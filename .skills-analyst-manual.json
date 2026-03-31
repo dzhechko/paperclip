@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "installedAt": "2026-03-31T05:45:29.427Z",
+  "components": [
+    "skill_analyst",
+    "skill_explore",
+    "skill_goap",
+    "skill_solver",
+    "commands"
+  ],
+  "files": [
+    ".claude/commands/analyst-manual.md",
+    ".claude/skills/analyst-manual-full/SKILL.md",
+    ".claude/skills/explore/SKILL.md",
+    ".claude/skills/explore/references/questioning-techniques.md",
+    ".claude/skills/explore/references/task-brief-templates.md",
+    ".claude/skills/goap-research-ed25519/SKILL.md",
+    ".claude/skills/goap-research-ed25519/references/ed25519-verification.md",
+    ".claude/skills/goap-research-ed25519/references/research-actions.md",
+    ".claude/skills/goap-research-ed25519/references/source-evaluation.md",
+    ".claude/skills/goap-research-ed25519/scripts/ed25519_verifier.py",
+    ".claude/skills/goap-research-ed25519/scripts/goap_planner.py",
+    ".claude/skills/problem-solver-enhanced/SKILL.md"
+  ]
+}
