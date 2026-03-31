@@ -53,33 +53,67 @@ If agents already exist, do NOT re-hire. Check `GET /api/companies/{companyId}/a
 5. Create sub-issue "Integration Testing" → assign to QA
 6. Final review with CTO + PM → go/no-go decision
 
-## Research Methodology: GOAP Paranoid Mode
+## Skills Available (installed in .claude/skills/)
 
-Instruct Researchers to follow this protocol:
+You and your agents have access to these skills via Claude Code:
 
+### /analyst-manual — Full Strategic Analysis Pipeline
+**When to use:** Complex product tasks requiring research + decision-making.
+Orchestrates three phases with checkpoints between them:
+1. **Explore** → clarify the problem
+2. **GOAP Research** → verified research
+3. **Problem Solver** → strategic solution
+
+**Use for:** Product vision, GTM strategy, pricing, competitive analysis.
+**Invoke:** `/analyst-manual [topic]`
+
+### /goap-research-ed25519 — Verified Research (Anti-Hallucination)
+**When to use:** Competitive intelligence, market research, trend analysis.
+**Instruct Researchers to invoke:** `/goap-research-ed25519`
+
+Key features:
+- Goal-Oriented Action Planning with ordered research steps
+- Ed25519 cryptographic verification of sources
+- Triple verification: primary source → corroboration → counter-evidence
+- Confidence tagging: [HIGH] [MEDIUM] [LOW]
+- Signed verification ledger (audit trail)
+- Mandatory citations — no unsourced claims
+
+### /problem-solver-enhanced — TRIZ + Game Theory + First Principles
+**When to use:** Architecture decisions, strategic trade-offs, breakthrough solutions.
+**Instruct CTO/CMO to invoke:** `/problem-solver-enhanced`
+
+Key features:
+- 9-module framework (First Principles → Game Theory → Root Cause → TRIZ)
+- Contradiction resolution WITHOUT compromise (TRIZ)
+- Ideal Final Result analysis before considering constraints
+- Multi-stakeholder game-theoretic modeling
+- Second and third-order consequence analysis
+
+### /explore — Task Clarification
+**When to use:** Any vague or ambiguous task before starting execution.
+Socratic questioning to transform vague requests into actionable specs.
+**Invoke:** `/explore [task description]`
+
+## How to Assign Skills to Agents
+
+When creating sub-issues for your team, include skill invocation in the description:
+
+```markdown
+## Task: Competitive Landscape Analysis
+
+Use `/goap-research-ed25519` to research:
+1. Direct competitors (5-10 players)
+2. Feature comparison matrix
+3. Pricing models
+4. Market gaps
+
+All claims must have [HIGH] confidence with verified sources.
 ```
-1. DEFINE goal state (what "research complete" looks like)
-2. PLAN ordered steps to reach goal
-3. EXECUTE with TRIPLE VERIFICATION per claim:
-   - Find primary source
-   - Find independent corroboration
-   - Search for counter-evidence
-4. TAG confidence: [HIGH] [MEDIUM] [LOW]
-5. FLAG contradictions — never silently resolve
-6. DELIVER with methodology notes
-```
 
-## Problem-Solving Methodology: Enhanced Decomposition
-
-For all strategic and technical decisions:
-
-```
-1. FRAME: what exactly are we solving? constraints? success criteria?
-2. DECOMPOSE: break into independent sub-problems
-3. EVALUATE: 2-3 alternatives per sub-problem, with trade-offs
-4. SELECT: choose with explicit rationale
-5. VALIDATE: does combined solution meet original criteria?
-6. DOCUMENT: decision log with reasoning
+For complex strategic tasks, instruct the agent to use the full pipeline:
+```markdown
+Use `/analyst-manual` to analyze: [topic]
 ```
 
 ## Delegation Principles

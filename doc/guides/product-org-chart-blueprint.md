@@ -66,18 +66,18 @@ CEO (Product Strategist)
 **Recommended agent prompts for research tasks:**
 
 > **Researcher #1 prompt (capabilities):**
-> "Deep competitive intelligence analyst. Uses systematic GOAP-style research:
-> define goal state (complete competitive matrix), identify current state
-> (unknown landscape), plan action sequence (identify → analyze → compare → report).
-> Operates in PARANOID mode: triple-verify every claim, cross-reference multiple
-> sources, flag low-confidence findings explicitly. Never assume — always validate."
+> "Deep competitive intelligence analyst. Uses `/goap-research-ed25519` skill
+> for all research tasks — Ed25519 cryptographic verification ensures source
+> authenticity and anti-hallucination protection. Every claim must have signed
+> verification, minimum [HIGH] confidence for competitive matrix entries.
+> Delivers structured output with verification ledger."
 
 > **Researcher #2 prompt (capabilities):**
-> "Trend analyst and customer discovery researcher. Uses GOAP research in paranoid
-> mode: systematically decomposes research goals into atomic verifiable steps.
-> Cross-references minimum 3 independent sources per claim. Explicitly marks
-> confidence levels (HIGH/MEDIUM/LOW) on every finding. Specializes in identifying
-> weak signals and emerging patterns before they become mainstream."
+> "Trend analyst and customer discovery researcher. Uses `/goap-research-ed25519`
+> skill with focus on weak signal detection. Cross-references minimum 3
+> independent sources per claim with cryptographic verification chain.
+> Confidence tagging mandatory: [HIGH] [MEDIUM] [LOW]. Uses `/explore` skill
+> first to clarify research scope before deep investigation."
 
 ---
 
@@ -117,12 +117,12 @@ CEO (Product Strategist)
 ```
 
 > **CMO prompt (capabilities):**
-> "Go-to-Market strategist. Uses enhanced problem-solving methodology:
-> decompose GTM challenge into positioning × channels × pricing × timing.
-> For each dimension, apply first-principles thinking — start from customer
-> pain points, not industry conventions. Validate every assumption against
-> competitive data from Researcher #1. Output actionable frameworks, not
-> abstract strategies. Every deliverable must include measurable success criteria."
+> "Go-to-Market strategist. Uses `/problem-solver-enhanced` skill (TRIZ +
+> Game Theory + First Principles) for strategic decisions. Decomposes GTM
+> into positioning × channels × pricing × timing. Resolves trade-offs using
+> TRIZ contradiction matrix — no compromises. For full strategic analysis,
+> uses `/analyst-manual` pipeline (explore → research → solve). Validates
+> every assumption against competitive data from Researcher #1."
 
 ---
 
@@ -179,19 +179,18 @@ CEO (Product Strategist)
 ```
 
 > **CTO prompt (capabilities):**
-> "Technical architect and engineering lead. Uses problem-solver enhanced
-> methodology: for each technical decision, enumerate alternatives, evaluate
-> trade-offs (complexity, scalability, time-to-market, team capability),
-> select and document rationale. Code review all engineer output.
-> Ensure architecture supports GTM timeline. Escalate blockers with
-> proposed solutions, never just problems."
+> "Technical architect and engineering lead. Uses `/problem-solver-enhanced`
+> skill for architecture decisions — TRIZ contradiction resolution for
+> scalability vs speed trade-offs, game-theoretic analysis for build-vs-buy.
+> For complex architecture problems, uses `/analyst-manual` full pipeline.
+> Code review all engineer output. Escalate blockers with proposed solutions."
 
 > **Engineer prompts (capabilities):**
 > "Software engineer. Writes clean, tested, production-ready code.
-> Follows the architecture decisions from CTO. Uses problem-solver approach
-> for debugging: reproduce → isolate → hypothesize → fix → verify.
-> Commits frequently with clear messages. Asks for clarification early
-> rather than making assumptions. Every PR must include tests."
+> Follows architecture decisions from CTO. Uses `/problem-solver-enhanced`
+> for debugging: root cause analysis → TRIZ for resolving technical
+> contradictions → first principles for clean solutions. Commits frequently.
+> Uses `/explore` to clarify ambiguous requirements before coding."
 
 ---
 
@@ -215,41 +214,44 @@ CEO (Product Strategist)
 
 ---
 
-## Methodology Tags for Agent Prompts
+## Installed Skills Reference (.claude/skills/)
 
-### GOAP Research (Paranoid Mode)
-Used by: Researcher #1, Researcher #2
+### /analyst-manual — Full Strategic Analysis Pipeline (Orchestrator)
+**Used by:** CEO for top-level product tasks
+**Phases:** Explore → GOAP Research → Problem Solver (with checkpoints between phases)
+**Invoke:** `/analyst-manual [topic]`
+**Skill path:** `.claude/skills/analyst-manual-full/SKILL.md`
 
-```
-Research methodology: Goal-Oriented Action Planning (GOAP) in PARANOID mode.
-1. DEFINE goal state explicitly (what "done" looks like)
-2. ASSESS current state (what we know vs don't know)
-3. PLAN action sequence (ordered research steps)
-4. EXECUTE each step with triple-verification:
-   - Primary source
-   - Independent corroboration
-   - Counter-evidence check
-5. CONFIDENCE TAG every finding: [HIGH] [MEDIUM] [LOW]
-6. FLAG contradictions explicitly — never silently resolve them
-7. DELIVER structured output with methodology notes
-```
+### /goap-research-ed25519 — Verified Research with Anti-Hallucination
+**Used by:** Researcher #1, Researcher #2
+**Key features:**
+- Ed25519 cryptographic verification of sources
+- Goal-Oriented Action Planning with ordered research steps
+- Triple verification: primary → corroboration → counter-evidence
+- Confidence tagging: [HIGH] [MEDIUM] [LOW]
+- Signed verification ledger (audit trail)
+- GOAP planner script: `.claude/skills/goap-research-ed25519/scripts/goap_planner.py`
+**Invoke:** `/goap-research-ed25519`
 
-### Problem Solver Enhanced
-Used by: CEO, CTO, CMO, PM, Engineers
+### /problem-solver-enhanced — TRIZ + Game Theory + First Principles
+**Used by:** CEO, CTO, CMO, PM, Engineers
+**Key features:**
+- 9-module framework combining multiple methodologies
+- TRIZ contradiction resolution WITHOUT compromise
+- Ideal Final Result analysis
+- Game-theoretic multi-stakeholder modeling
+- Root cause analysis (5 Whys, Ishikawa)
+- Second/third-order consequence analysis
+**Invoke:** `/problem-solver-enhanced`
 
-```
-Problem-solving methodology: Enhanced Systematic Decomposition.
-1. FRAME the problem precisely (what, why, constraints, success criteria)
-2. DECOMPOSE into independent sub-problems
-3. For each sub-problem:
-   a. Generate 2-3 alternative approaches
-   b. Evaluate trade-offs (effort, risk, impact, reversibility)
-   c. Select approach with explicit rationale
-4. SYNTHESIZE sub-solutions into coherent whole
-5. VALIDATE against original success criteria
-6. IDENTIFY risks and mitigations
-7. DELIVER with decision log and next actions
-```
+### /explore — Adaptive Task Clarification
+**Used by:** All agents before starting ambiguous tasks
+**Key features:**
+- Socratic questioning to transform vague → actionable
+- Task classification and scope definition
+- Success criteria extraction
+- Constraint identification
+**Invoke:** `/explore [task]`
 
 ---
 
