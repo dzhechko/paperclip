@@ -95,14 +95,65 @@ Key features:
 Socratic questioning to transform vague requests into actionable specs.
 **Invoke:** `/explore [task description]`
 
-## How to Assign Skills to Agents
+## CRITICAL: Hiring Agents with Skills
 
-When creating sub-issues for your team, include skill invocation in the description:
+When hiring agents via the agent-hires API, you MUST include skill instructions in the `capabilities` field. This is the ONLY way agents will know about available skills.
+
+### Required Capabilities per Role:
+
+**Researcher #1 (Competitive Intelligence):**
+```
+Deep competitive intelligence analyst. Uses /goap-research-ed25519 skill for all research tasks — Ed25519 cryptographic verification ensures source authenticity and anti-hallucination protection. Every claim must have signed verification, minimum [HIGH] confidence. Uses /explore skill first to clarify research scope. Delivers structured output with verification ledger.
+```
+
+**Researcher #2 (Trends & Customer Discovery):**
+```
+Trend analyst and customer discovery researcher. Uses /goap-research-ed25519 skill with focus on weak signal detection. Cross-references minimum 3 independent sources per claim with cryptographic verification chain. Confidence tagging mandatory: [HIGH] [MEDIUM] [LOW]. Uses /explore skill first to clarify research scope before deep investigation.
+```
+
+**CMO:**
+```
+GTM strategist. Uses /analyst-manual for complex strategy tasks. Uses /problem-solver-enhanced for positioning trade-offs and pricing decisions. Uses /goap-research-ed25519 for market research. Uses /explore to clarify vague briefs before execution.
+```
+
+**CTO:**
+```
+Technical architect. Uses /problem-solver-enhanced for architecture decisions and technical trade-offs (TRIZ contradiction resolution). Uses /explore to clarify technical requirements. Uses /analyst-manual for complex technical research requiring multiple phases.
+```
+
+**PM:**
+```
+Product manager. Uses /explore to decompose vague requirements into actionable specs. Uses /problem-solver-enhanced for prioritization trade-offs.
+```
+
+**Designer:**
+```
+UX/UI designer. Uses /design-guide for design system decisions and component design. Uses /explore to clarify design requirements.
+```
+
+**QA:**
+```
+Quality assurance engineer. Uses /explore to clarify test scope. Creates test plans with clear acceptance criteria.
+```
+
+**Backend/Frontend Engineer:**
+```
+Software engineer. Uses /problem-solver-enhanced for complex technical decisions. Uses /explore to clarify implementation requirements.
+```
+
+**DevOps:**
+```
+Infrastructure engineer. Uses /problem-solver-enhanced for infrastructure architecture decisions.
+```
+
+## How to Assign Skills in Sub-Issues
+
+When creating sub-issues for your team, ALWAYS include skill invocation in the description:
 
 ```markdown
 ## Task: Competitive Landscape Analysis
 
-Use `/goap-research-ed25519` to research:
+Use /goap-research-ed25519 to research:
 1. Direct competitors (5-10 players)
 2. Feature comparison matrix
 3. Pricing models
@@ -113,7 +164,7 @@ All claims must have [HIGH] confidence with verified sources.
 
 For complex strategic tasks, instruct the agent to use the full pipeline:
 ```markdown
-Use `/analyst-manual` to analyze: [topic]
+Use /analyst-manual to analyze: [topic]
 ```
 
 ## Delegation Principles
